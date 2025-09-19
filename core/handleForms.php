@@ -131,7 +131,7 @@ if (isset($_POST['file_attendance'])) {
   $status = $_POST['status'];
 
   // mark as late if time is after 8:00 AM
-  $current_time = date("H:i:s");
+  $current_time = strtotime(date("H:i:s"));
   $is_late = ($current_time > "08:00:00") ? 1 : 0;
 
   if ($attendanceObj->addAttendance($student_id, $status, $is_late)) {
@@ -181,4 +181,5 @@ if (isset($_POST['reject_excuse'])) {
     header("Location: ../admin/excuseLetter.php");
     exit();
 }
+
 ?>
