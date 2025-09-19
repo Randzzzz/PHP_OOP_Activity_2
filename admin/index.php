@@ -120,9 +120,9 @@ if ($selected_course && $selected_year) {
       <select name="student_year" class="mt-1 border border-gray-500/50 rounded-md p-2 focus:outline-none focus:ring focus:border-transparent">
         <option value="">-- All Year Level --</option>
         <option value="1" <?= ($_GET['student_year'] ?? '') == '1' ? 'selected' : ''; ?>>1st Year</option>
-        <option value="1" <?= ($_GET['student_year'] ?? '') == '1' ? 'selected' : ''; ?>>2nd Year</option>
-        <option value="1" <?= ($_GET['student_year'] ?? '') == '1' ? 'selected' : ''; ?>>3rd Year</option>
-        <option value="1" <?= ($_GET['student_year'] ?? '') == '1' ? 'selected' : ''; ?>>4th Year</option>
+        <option value="2" <?= ($_GET['student_year'] ?? '') == '2' ? 'selected' : ''; ?>>2nd Year</option>
+        <option value="3" <?= ($_GET['student_year'] ?? '') == '3' ? 'selected' : ''; ?>>3rd Year</option>
+        <option value="4" <?= ($_GET['student_year'] ?? '') == '4' ? 'selected' : ''; ?>>4th Year</option>
       </select>
       <button type="Submit" class="bg-[#829374] text-white px-4 rounded-md hover:bg-[#4b5b40] font-medium cursor-pointer">Filter Table</button>
     </form>
@@ -245,4 +245,5 @@ if ($selected_course && $selected_year) {
 
   
 </body>
+
 </html>
