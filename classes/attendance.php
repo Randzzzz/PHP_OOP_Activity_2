@@ -11,6 +11,7 @@ class Attendance extends Database{
                      students.year_level,
                      attendance.status,
                      attendance.is_late,
+                     attendance.is_excused,
                      attendance.date_added
               FROM attendance
               JOIN students ON attendance.student_id = students.id
@@ -28,6 +29,7 @@ class Attendance extends Database{
                          students.year_level,
                          attendance.status,
                          attendance.is_late,
+                          attendance.is_excused,
                          attendance.date_added
                   FROM attendance
                   JOIN students ON attendance.student_id = students.id

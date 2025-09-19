@@ -217,6 +217,7 @@ if ($selected_course && $selected_year) {
             <th class="p-2 border">Status</th>
             <th class="p-2 border">Late?</th>
             <th class="p-2 border">Date</th>
+            <th class="p-2 border">Excused</th>
           </tr>
         </thead>
         <tbody>
@@ -229,11 +230,12 @@ if ($selected_course && $selected_year) {
                 <td class="p-2 border"><?= htmlspecialchars($attendance['status']); ?></td>
                 <td class="p-2 border"><?= $attendance['is_late'] ? 'Yes' : 'No'; ?></td>
                 <td class="p-2 border"><?= htmlspecialchars(date('Y-m-d H:i', strtotime($attendance['date_added']))); ?></td>
+                <td class="p-2 border"><?= $attendance['is_excused'] ? 'Yes' : 'No'; ?></td>
               </tr>
             <?php endforeach; ?>
           <?php else: ?>
             <tr>
-              <td class="p-2 border text-gray-500 text-center" colspan="6">No attendance records found.</td> 
+              <td class="p-2 border text-gray-500 text-center" colspan="7">No attendance records found.</td> 
             </tr>
           <?php endif; ?>
         </tbody>

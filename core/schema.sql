@@ -29,6 +29,19 @@ CREATE TABLE attendance (
     student_id INT,
     status ENUM('Present','Absent') DEFAULT 'Present',
     is_late BOOLEAN DEFAULT FALSE,
+    is_excused BOOLEAN DEFAULT FALSE,
     date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);
+
+CREATE TABLE excuse_letters (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    content TEXT NOT NULL,
+    course_id INT,
+    date_excused DATE NOT NULL,
+    status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+    date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );

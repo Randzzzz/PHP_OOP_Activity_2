@@ -71,6 +71,7 @@ $attendance_history = $attendanceObj->getAttendance($student['id']);
           <th class="p-2 border">Status</th>
           <th class="p-2 border">Late?</th>
           <th class="p-2 border">Date</th>
+          <th class="p-2 border">Excused</th>
         </tr>
       </thead>
       <tbody>
@@ -82,11 +83,12 @@ $attendance_history = $attendanceObj->getAttendance($student['id']);
               <td class="p-2 border"><?= $student_record['status']; ?></td>
               <td class="p-2 border"><?= $student_record['is_late'] ? 'Yes' : 'No'; ?></td>
               <td class="p-2 border"><?= $student_record['date_added']; ?></td>
+              <td class="p-2 border"><?= $student_record['is_excused'] ? 'Yes' : 'No'; ?></td>
             </tr>
           <?php endforeach; ?>
         <?php else: ?>
           <tr>
-            <td colspan="5" class="p-2 border text-gray-500 text-center">No attendance history found.</td>
+            <td colspan="6" class="p-2 border text-gray-500 text-center">No attendance history found.</td>
           </tr>
         <?php endif; ?>
       </tbody>

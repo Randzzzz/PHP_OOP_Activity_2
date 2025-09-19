@@ -127,19 +127,58 @@ if (isset($_GET['delete_course'])) {
 
 // Attendance Management
 if (isset($_POST['file_attendance'])) {
-    $student_id = $_POST['student_id'];
-    $status = $_POST['status'];
+  $student_id = $_POST['student_id'];
+  $status = $_POST['status'];
 
-    // mark as late if time is after 8:00 AM
-    $current_time = date("H:i:s");
-    $is_late = ($current_time > "08:00:00") ? 1 : 0;
+  // mark as late if time is after 8:00 AM
+  $current_time = date("H:i:s");
+  $is_late = ($current_time > "08:00:00") ? 1 : 0;
 
-    if ($attendanceObj->addAttendance($student_id, $status, $is_late)) {
-        $_SESSION['success'] = "Attendance filed successfully.";
+  if ($attendanceObj->addAttendance($student_id, $status, $is_late)) {
+    $_SESSION['success'] = "Attendance filed successfully.";
+  } else {
+    $_SESSION['error'] = "Failed to file attendance.";
+  }
+  header("Location: ../student/index.php");
+  exit();
+}
+
+// Excuse Letter Management
+if (isset($_POST['submit_excuse_letter'])) {
+  $student_id = $_POST['student_id'];
+  $course_id = $_POST['course_id'];
+  $date_excused = $_POST['date_excused'];
+  $content = trim($_POST['content']);
+
+  $result = $excuseLetterObj->submitExcuseLetter($student_id, $content, $course_id, $date_excused);
+  if ($result) {
+    $_SESSION['success'] = "Excuse letter submitted successfully.";
+  } else {
+    $_SESSION['error'] = "Failed to submit excuse letter.";
+  }
+  header("Location: ../student/excuseLetter.php");
+  exit();
+}
+
+if (isset($_POST['approve_excuse'])) {
+    $excuse_id = $_POST['excuse_id'];
+    if ($excuseLetterObj->approveExcuseLetter($excuse_id)) {
+        $_SESSION['success'] = "Excuse letter approved.";
     } else {
-        $_SESSION['error'] = "Failed to file attendance.";
+        $_SESSION['error'] = "Failed to approve excuse letter.";
     }
-    header("Location: ../student/index.php");
+    header("Location: ../admin/excuseLetter.php");
+    exit();
+}
+
+if (isset($_POST['reject_excuse'])) {
+    $excuse_id = $_POST['excuse_id'];
+    if ($excuseLetterObj->rejectExcuseLetter($excuse_id)) {
+        $_SESSION['success'] = "Excuse letter rejected.";
+    } else {
+        $_SESSION['error'] = "Failed to reject excuse letter.";
+    }
+    header("Location: ../admin/excuseLetter.php");
     exit();
 }
 ?>

@@ -5,9 +5,11 @@ require_once "../classes/attendance.php";
 require_once "../classes/course.php";
 require_once "../classes/student.php";
 require_once "../classes/user.php";
+require_once "../classes/excuse_letter.php";
 
 $attendanceObj = new Attendance();
 $courseObj = new Course();
 $studentObj = new Student();
 $userObj = new User();
+$excuseLetterObj = new ExcuseLetter();
 ?>
